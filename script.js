@@ -15,14 +15,22 @@ async function startBuzzer() {
   for (let i = 0; i < buzzCount; i++) {
     const delay = Math.random() * duration;
     setTimeout(() => {
-      navigator.serviceWorker.ready.then(reg => {
-        reg.showNotification("Time to pause and breathe!", {
-          body: "Take a moment for mindfulness.",
-          vibrate: [200, 100, 200],
-        });
-      });
+      sendBuzzNotification("⏰ Time to pause and breathe!");
     }, delay);
   }
 
   alert(`Scheduled ${buzzCount} random buzzes between ${startHour}:00 and ${endHour}:00`);
+}
+
+function testBuzz() {
+  sendBuzzNotification("🔔 Test Buzz: Your vibration works!");
+}
+
+function sendBuzzNotification(message) {
+  navigator.serviceWorker.ready.then(reg => {
+    reg.showNotification(message, {
+      body: "This is a test or scheduled buzz.",
+      vibrate: [200, 100, 200],
+    });
+  });
 }
