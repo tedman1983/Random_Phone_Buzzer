@@ -1,12 +1,3 @@
-document.addEventListener('DOMContentLoaded', async () => {
-  if (Notification.permission !== 'granted') {
-    const permission = await Notification.requestPermission();
-    if (permission !== 'granted') {
-      alert('Please enable notifications in your browser settings for this to work.');
-    }
-  }
-});
-
 async function startBuzzer() {
   if (Notification.permission !== 'granted') {
     await Notification.requestPermission();
@@ -43,14 +34,24 @@ function sendBuzzNotification(message) {
     });
   });
 }
-function testVibrationOnly() {
+
+// Simple test to confirm the button works and basic vibration/notification logic
+async function testBuzzSimple() {
+  alert('Simple Test Buzz button clicked!');
+
   if (navigator.vibrate) {
-    const didVibrate = navigator.vibrate([300]);
-    alert(didVibrate ? 'Vibration triggered!' : 'Vibration NOT triggered.');
-  } else {
-    alert('Vibration API not supported on this device/browser.');
+    navigator.vibrate([200, 100, 200]);
+  }
+  if (Notification.permission !== "granted") {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      alert('Please enable notifications in your browser settings for this to work.');
+      return;
+    }
+  }
+  if (Notification.permission === "granted") {
+    new Notification("🔔 Simple Test Buzz", {
+      body: "If you see this and feel vibration, it's working!",
+    });
   }
 }
-
-
-
