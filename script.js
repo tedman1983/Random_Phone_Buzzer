@@ -34,3 +34,19 @@ function sendBuzzNotification(message) {
     });
   });
 }
+async function testBuzzSimple() {
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200]);
+  }
+  if (Notification.permission !== "granted") {
+    await Notification.requestPermission();
+  }
+  if (Notification.permission === "granted") {
+    new Notification("🔔 Simple Test Buzz", {
+      body: "If you see this and feel vibration, it's working!",
+    });
+  } else {
+    alert("Notifications are not allowed. Please enable them.");
+  }
+}
+
