@@ -1,0 +1,15 @@
+{
+  "name": "Random Buzzer",
+  "short_name": "Buzzer",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/84/Alarm_Clock_font_awesome.svg/512px-Alarm_Clock_font_awesome.svg.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
