@@ -1,3 +1,12 @@
+document.addEventListener('DOMContentLoaded', async () => {
+  if (Notification.permission !== 'granted') {
+    const permission = await Notification.requestPermission();
+    if (permission !== 'granted') {
+      alert('Please enable notifications in your browser settings for this to work.');
+    }
+  }
+});
+
 async function startBuzzer() {
   if (Notification.permission !== 'granted') {
     await Notification.requestPermission();
